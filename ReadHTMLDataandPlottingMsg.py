@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 # Location of the data
 target_url = "NA"
 
-# Read HTML data: to see how table1 looks, check the png image
+# Read HTML data: to see how table1 looks, check the png image HTMLtable1.png
 table1 = pd.read_html(target_url)
 print("table1 = ", table1) 
 
@@ -26,7 +26,7 @@ print("table1 = ", table1)
     I saw the data file. Hence, including an encoding value.
 '''
 
-# To see how table2 looks, check the png image
+# To see how table2 looks, check the png image HTMLtable2.png
 table2 = pd.read_html(target_url, header = 0, encoding = 'utf-8')
 print("table2 = ", table2)
 print(type(table2))
@@ -50,7 +50,7 @@ print(headers)
 data_3d = np.array(table2)
 data_2d_numpy = data_3d.reshape(-1, data_3d.shape[2])
 
-# Create DataFrame: to see how data looks, check the png image
+# Create DataFrame: to see how data looks, check the png image HTMLdata.png
 data = pd.DataFrame(data_2d_numpy, columns=headers)
 print("data = ", data)
 
@@ -70,7 +70,7 @@ Because scatter plot does not accept unicode symbols as markers,
 I am plotting 'texts' instead of markers.
 '''
 
-# Plotting: to see how the figure looks, check the png image
+# Plotting: to see how the figure looks, check the png image HTMLmsgPlot.png
 fig, ax = plt.subplots()
 for _, row in data.iterrows():
     ax.text(row[0], row[2], row[1], ha='center', va= 'center')
@@ -80,3 +80,4 @@ ax.set_aspect('equal')
 ax.set_title('*** Data to message ***')
 
 plt.show()
+
