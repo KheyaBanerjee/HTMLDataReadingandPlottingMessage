@@ -11,11 +11,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Location of the data
-target_url = "https://docs.google.com/document/d/e/2PACX-1vRPzbNQcx5UriHSbZ-9vmsTow_R6RRe7eyAU60xIF9Dlz-vaHiHNO2TKgDi7jy4ZpTpNqM7EvEcfr_p/pub"
+target_url = "NA"
 
-# Read HTML data
+# Read HTML data: to see how table1 looks, check the png image
 table1 = pd.read_html(target_url)
-print("table1 = ", table1)
+print("table1 = ", table1) 
 
 '''
 1. This print statement shows there is an extra header row
@@ -26,6 +26,7 @@ print("table1 = ", table1)
     I saw the data file. Hence, including an encoding value.
 '''
 
+# To see how table2 looks, check the png image
 table2 = pd.read_html(target_url, header = 0, encoding = 'utf-8')
 print("table2 = ", table2)
 print(type(table2))
@@ -49,7 +50,7 @@ print(headers)
 data_3d = np.array(table2)
 data_2d_numpy = data_3d.reshape(-1, data_3d.shape[2])
 
-# Create DataFrame
+# Create DataFrame: to see how data looks, check the png image
 data = pd.DataFrame(data_2d_numpy, columns=headers)
 print("data = ", data)
 
@@ -69,7 +70,7 @@ Because scatter plot does not accept unicode symbols as markers,
 I am plotting 'texts' instead of markers.
 '''
 
-# Plotting
+# Plotting: to see how the figure looks, check the png image
 fig, ax = plt.subplots()
 for _, row in data.iterrows():
     ax.text(row[0], row[2], row[1], ha='center', va= 'center')
@@ -77,4 +78,5 @@ ax.set_xlim(0, x_range)
 ax.set_ylim(0, y_range)
 ax.set_aspect('equal')
 ax.set_title('*** Data to message ***')
+
 plt.show()
